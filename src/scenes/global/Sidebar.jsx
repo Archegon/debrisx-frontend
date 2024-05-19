@@ -1,21 +1,25 @@
-import { Sidebar as ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { NavLink } from 'react-router-dom';
-import { tokens } from '../../theme';
-import { Box, Divider, Typography, useTheme } from '@mui/material';
+import { Box, Divider, Drawer, List, ListItemIcon, ListItemText, Typography, useTheme, ListItemButton } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import QuizIcon from '@mui/icons-material/Quiz';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { tokens } from '../../theme';
 
 const Sidebar = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
     return (
-        <ProSidebar
-            backgroundColor={theme.palette.mode === "dark" ? "transparent" : colors.primary[400]}
-            rootStyles={{
-                border: 'None',
-                background: `linear-gradient(to bottom, ${colors.primary[400]}, ${colors.primary[600]})`,
+        <Drawer
+            variant="permanent"
+            sx={{
+                width: 250,
+                flexShrink: 0,
+                '& .MuiDrawer-paper': {
+                    width: 250,
+                    background: theme.palette.mode === 'dark' ? `linear-gradient(to bottom, ${colors.primary[400]}, ${colors.primary[600]})` : colors.primary[400],
+                    border: 'none',
+                },
             }}
         >
             <Box px={2} pt={3}>
@@ -24,26 +28,38 @@ const Sidebar = () => {
                     <Typography variant='subtitle1'>Control Panel</Typography>
                 </Typography>
                 <Divider sx={{ pt: 3 }} />
-                <Menu
-                    menuItemStyles={{
-                        button: {
-                            [`&.active`]: {
-                                fontWeight: 'bold',
-                                color: colors.blueAccent[500],
-                            },
-                            '&:hover': {
-                                color: colors.blueAccent[500],
-                                backgroundColor: 'transparent',
-                            },
+                <List sx={{
+                    '& .MuiListItemButton-root.active': {
+                        color: colors.blueAccent[500],
+                        '& .MuiListItemIcon-root': {
+                            color: colors.blueAccent[500],
                         },
-                    }}
-                >
-                    <MenuItem icon={<DashboardIcon />} component={<NavLink to="/" />}>Dashboard</MenuItem>
-                    <MenuItem icon={<QuizIcon />} component={<NavLink to="/faq" />}>FAQ</MenuItem>
-                    <MenuItem icon={<SettingsIcon />}>Settings</MenuItem>
-                </Menu>
+                        '& .MuiTypography-root': {
+                            fontWeight: 'bold',
+                        },
+                    },
+                }}>
+                    <ListItemButton component={NavLink} to="/">
+                        <ListItemIcon>
+                            <DashboardIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Dashboard" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/faq">
+                        <ListItemIcon>
+                            <QuizIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="FAQ" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/settings">
+                        <ListItemIcon>
+                            <SettingsIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Settings" />
+                    </ListItemButton>
+                </List>
             </Box>
-        </ProSidebar>
+        </Drawer>
     );
 }
 

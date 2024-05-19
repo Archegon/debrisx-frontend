@@ -129,7 +129,7 @@ export const themeSettings = (mode) => {
                 ? {
                     // palette values for dark mode
                     primary: {
-                        main: colors.primary[500],
+                        main: colors.blueAccent[500],
                     },
                     secondary: {
                         main: colors.greenAccent[500],
@@ -146,7 +146,7 @@ export const themeSettings = (mode) => {
                 : {
                     // palette values for light mode
                     primary: {
-                        main: colors.primary[100],
+                        main: colors.blueAccent[500],
                     },
                     secondary: {
                         main: colors.greenAccent[500],

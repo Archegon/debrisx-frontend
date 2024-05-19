@@ -4,6 +4,7 @@ import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import Topbar from './scenes/global/Topbar';
 import Dashboard from './scenes/dashboard';
 import FAQ from './scenes/faq';
+import Settings from "./scenes/settings";
 import Sidebar from './scenes/global/Sidebar';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/faq" element={<FAQ />} />
+                  <Route path="/settings" element={<Settings />} />
                 </Routes>
               </Box>
             </Box>

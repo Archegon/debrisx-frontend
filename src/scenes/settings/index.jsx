@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
 import Header from "../../components/Header";
 
-const FAQ = () => {
+const Settings = () => {
     return (
         <Box>
-            <Header title="FAQ" subtitle="Frequently asked questions" />
+            <Header title="Settings" subtitle="Manage your settings" />
         </Box>
     );
 }
 
-export default FAQ;
+export default Settings;
