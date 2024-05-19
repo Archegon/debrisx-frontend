@@ -8,20 +8,11 @@ const Header = ({ title, subtitle }) => {
         <Box mb="30px">
             <Typography
                 variant="h2"
-                color={colors.grey[100]}
                 fontWeight="bold"
-                sx={{
-                    m: "0 0 5px 0",
-                    textShadow: "0.5px 0.5px 1px rgba(0, 0, 0, 0.2)",
-                }}
             >
                 {title}
             </Typography>
-            <Typography variant="h5" color={colors.greenAccent[500]}
-                sx={{
-                    textShadow: "0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2)",
-                }}
-            >
+            <Typography variant="h5" color={colors.accent[500]} >
                 {subtitle}
             </Typography>
         </Box>

@@ -17,22 +17,22 @@ const Sidebar = () => {
                 flexShrink: 0,
                 '& .MuiDrawer-paper': {
                     width: 250,
-                    background: theme.palette.mode === 'dark' ? `linear-gradient(to bottom, ${colors.primary[400]}, ${colors.primary[600]})` : colors.primary[400],
+                    background: colors.background[900],
                     border: 'none',
                 },
             }}
         >
             <Box px={2} pt={3}>
                 <Typography align='center' fontWeight={'bold'} variant='h2'>
-                    Debris <span style={{ color: 'orange' }}>X</span><br />
+                    Debris <span style={{ color: colors.accent[500] }}>X</span><br />
                     <Typography variant='subtitle1'>Control Panel</Typography>
                 </Typography>
                 <Divider sx={{ pt: 3 }} />
                 <List sx={{
                     '& .MuiListItemButton-root.active': {
-                        color: colors.blueAccent[500],
+                        color: colors.accent[500],
                         '& .MuiListItemIcon-root': {
-                            color: colors.blueAccent[500],
+                            color: colors.accent[500],
                         },
                         '& .MuiTypography-root': {
                             fontWeight: 'bold',

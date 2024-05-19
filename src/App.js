@@ -15,9 +15,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
+          <Sidebar />
           <main className="content">
-            <Sidebar />
-            <Box flexGrow={1} display={'flex'} flexDirection={'column'}>
+            <Box display={'flex'} flexGrow={1} flexDirection={'column'}>
               <Topbar />
               <Box px={3}>
                 <Routes>

@@ -7,11 +7,11 @@ const Card = ({ title, description, children }) => {
 
     return (
         <Box
-            borderRadius={1}
+            borderRadius={3}
             sx={{
                 px: 2,
                 py: 2,
-                backgroundColor: colors.primary[400],
+                backgroundColor: colors.background[900],
             }}>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
                 <Stack direction="column">
