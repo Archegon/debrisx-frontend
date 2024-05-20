@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, useTheme, Button } from '@mui/material';
+import { Box, Stack, Typography, useTheme } from '@mui/material';
 import { tokens } from '../theme';
 
 const Card = ({ title, description, children }) => {
@@ -8,6 +8,8 @@ const Card = ({ title, description, children }) => {
     return (
         <Box
             borderRadius={3}
+            height={'100%'}
+            width={'100%'}
             sx={{
                 px: 2,
                 py: 2,
@@ -17,9 +19,6 @@ const Card = ({ title, description, children }) => {
                 <Stack direction="column">
                     <Typography variant="h4">{title}</Typography>
                     <Typography variant="subtitle1">{description}</Typography>
-                </Stack>
-                <Stack direction="row" spacing={1} display={'block'}>
-                    {/* <Button variant="contained" color="primary">View</Button> */}
                 </Stack>
             </Stack>
             <Box pt={2}>

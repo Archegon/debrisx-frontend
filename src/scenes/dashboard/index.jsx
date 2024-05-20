@@ -1,29 +1,74 @@
-import { Box, Grid, Typography } from "@mui/material";
+import React, { useState, useEffect } from 'react';
+import GridLayout from 'react-grid-layout';
+import { Box, Typography } from "@mui/material";
 import Header from "../../components/Header";
 import Card from "../../components/Card";
 import VideoFeed from "../../components/VideoFeed";
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
+
+const layout = [
+    { i: 'camera', x: 0, y: 0, w: 3, h: 20, minW: 3, minH: 20 },
+    { i: 'resources', x: 3, y: 0, w: 2, h: 14, minH: 14 },
+    { i: 'statistics', x: 5, y: 0, w: 1, h: 5 },
+];
 
 const Dashboard = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        // Update the width state on window resize
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        };
+
+        // Set the initial height and width
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
     return (
         <Box>
             <Header title="Dashboard" subtitle="Welcome to your dashboard" />
-            <Grid container spacing={2}>
-                <Grid item>
-                    <Card title={'Camera'} description={'View your camera feed'}>
+            <GridLayout
+                className="layout"
+                layout={layout}
+                cols={7}
+                rowHeight={30}
+                width={width}
+                isResizable={true}
+            >
+                <div key="camera">
+                    <Card title="Camera" description="View your camera feed">
                         <Box>
                             <VideoFeed />
                         </Box>
                     </Card>
-                </Grid>
-                <Grid item>
-                    <Card title={'Client Resources'} description={'% resource consumption'}>
-                        <Box>
-                            <img src={'https://blog.hubspot.com/hs-fs/hubfs/Google%20Drive%20Integration/types%20of%20charts_32023-May-22-2023-10-17-26-0670-PM.png?width=600&height=451&name=types%20of%20charts_32023-May-22-2023-10-17-26-0670-PM.png'} alt={'Performance Chart'} />
+                </div>
+                <div key="resources">
+                    <Card title="Client Resources" description="% resource consumption">
+                        <Box
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                            width="100%"
+                            height="100%"
+                        >
+                            <img
+                                src="https://blog.hubspot.com/hs-fs/hubfs/Google%20Drive%20Integration/types%20of%20charts_32023-May-22-2023-10-17-26-0670-PM.png?width=600&height=451&name=types%20of%20charts_32023-May-22-2023-10-17-26-0670-PM.png"
+                                alt="Performance Chart"
+                                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                            />
                         </Box>
                     </Card>
-                </Grid>
-                <Grid item>
-                    <Card title={'Statistics'} description={'Technical stats'}>
+                </div>
+
+                <div key="statistics">
+                    <Card title="Statistics" description="Technical stats">
                         <Box>
                             <Typography>
                                 Latency: 200ms <br />
@@ -32,10 +77,10 @@ const Dashboard = () => {
                             </Typography>
                         </Box>
                     </Card>
-                </Grid>
-            </Grid>
+                </div>
+            </GridLayout>
         </Box>
     );
-}
+};
 
 export default Dashboard;
