@@ -65,13 +65,23 @@ const VideoFeed = () => {
 
     return (
         <Stack spacing={2} direction={'column'} alignItems={'center'}>
-            <Box ref={videoContainerRef} sx={{ position: 'relative', width: '640px', height: '640px' }}>
+            <Box
+                ref={videoContainerRef}
+                sx={{
+                    position: 'relative',
+                    width: '100%',
+                    maxWidth: '640px',
+                    height: 'auto',
+                    aspectRatio: '1 / 1',
+                    overflow: 'hidden',
+                }}
+            >
                 <img
                     ref={imgRef}
                     src=""
                     alt="Predicted Video Feed"
                     style={{
-                        position: "absolute",
+                        position: 'absolute',
                         width: '100%',
                         height: '100%',
                         display: isStreaming ? 'block' : 'none',
