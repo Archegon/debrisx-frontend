@@ -68,6 +68,8 @@ const VideoFeed = () => {
             <Box
                 ref={videoContainerRef}
                 sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
                     position: 'relative',
                     width: '100%',
                     maxWidth: '640px',
@@ -92,12 +94,14 @@ const VideoFeed = () => {
                 <Box
                     sx={{
                         position: 'relative',
-                        width: '100%',
+                        width: 'auto',
                         height: '100%',
+                        aspectRatio: '1 / 1',
                         backgroundColor: 'grey',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
+                        cobjectFit: 'contain',
                         zIndex: 1,
                     }}
                 >
@@ -107,13 +111,13 @@ const VideoFeed = () => {
                 </Box>
             </Box>
             <Stack spacing={2} direction={'row'} width={'100%'} sx={{ justifyContent: 'space-between' }}>
-                <Button fullWidth variant='contained' onClick={handleStart} disabled={isStreaming}>
+                <Button className='no-drag' fullWidth variant='contained' onClick={handleStart} disabled={isStreaming}>
                     Start Streaming
                 </Button>
-                <Button fullWidth variant='contained' color='error' onClick={handleStop} disabled={!isStreaming}>
+                <Button className='no-drag' fullWidth variant='contained' color='error' onClick={handleStop} disabled={!isStreaming}>
                     Stop Streaming
                 </Button>
-                <Button fullWidth variant='contained' color='primary' onClick={handleFullscreen}>
+                <Button className='no-drag' fullWidth variant='contained' color='primary' onClick={handleFullscreen}>
                     Fullscreen
                 </Button>
             </Stack>

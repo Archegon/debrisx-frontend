@@ -9,7 +9,7 @@ import 'react-resizable/css/styles.css';
 
 const layout = [
     { i: 'camera', x: 0, y: 0, w: 3, h: 20, minW: 3, minH: 20 },
-    { i: 'resources', x: 3, y: 0, w: 2, h: 14, minH: 14 },
+    { i: 'resources', x: 3, y: 0, w: 2, h: 14 },
     { i: 'statistics', x: 5, y: 0, w: 1, h: 5 },
 ];
 
@@ -40,7 +40,9 @@ const Dashboard = () => {
                 cols={7}
                 rowHeight={30}
                 width={width}
+                isDraggable={true}
                 isResizable={true}
+                draggableCancel=".no-drag"
             >
                 <div key="camera">
                     <Card title="Camera" description="View your camera feed">
