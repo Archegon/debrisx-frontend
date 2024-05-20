@@ -19,8 +19,7 @@ const Card = ({ title, description, children }) => {
                     <Typography variant="subtitle1">{description}</Typography>
                 </Stack>
                 <Stack direction="row" spacing={1} display={'block'}>
-                    <Button variant="contained" color="primary">Start</Button>
-                    <Button variant="contained" color="error">Stop</Button>
+                    {/* <Button variant="contained" color="primary">View</Button> */}
                 </Stack>
             </Stack>
             <Box pt={2}>

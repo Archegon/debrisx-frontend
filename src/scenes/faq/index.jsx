@@ -12,6 +12,7 @@ const FAQ = () => {
             <Header title="FAQ" subtitle="Frequently asked questions" />
             <Box sx={{
                 '& .MuiAccordion-root': {
+                    border: `1.5px solid ${colors.secondary[800]}`,
                     '& .MuiAccordionSummary-root': {
                         backgroundColor: colors.background[900],
                         '& .MuiTypography-root': {
@@ -19,7 +20,7 @@ const FAQ = () => {
                         },
                     },
                     '& .MuiAccordionDetails-root': {
-                        backgroundColor: colors.background[900],
+                        backgroundColor: colors.secondary[900],
                     },
                 },
             }}>
