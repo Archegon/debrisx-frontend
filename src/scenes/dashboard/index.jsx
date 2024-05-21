@@ -16,14 +16,6 @@ const layout = [
 const Dashboard = () => {
     const [width, setWidth] = useState(window.innerWidth);
 
-    const dashboard_width = useMemo(() => {
-        return (window.innerWidth - 64);
-    })
-
-    const dashboard_height = useMemo(() => {
-        return (window.innerHeight);
-    })
-
     useEffect(() => {
         // Update the width state on window resize
         const handleResize = () => {
