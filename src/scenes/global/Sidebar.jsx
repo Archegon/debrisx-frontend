@@ -3,6 +3,7 @@ import { Box, Divider, Drawer, List, ListItemIcon, ListItemText, Typography, use
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import QuizIcon from '@mui/icons-material/Quiz';
 import SettingsIcon from '@mui/icons-material/Settings';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import { tokens } from '../../theme';
 
 const Sidebar = () => {
@@ -13,10 +14,10 @@ const Sidebar = () => {
         <Drawer
             variant="permanent"
             sx={{
-                width: 240,
+                width: 220,
                 flexShrink: 0,
                 '& .MuiDrawer-paper': {
-                    width: 250,
+                    width: 220,
                     background: colors.background[900],
                     border: 'none',
                 },
@@ -44,6 +45,12 @@ const Sidebar = () => {
                             <DashboardIcon />
                         </ListItemIcon>
                         <ListItemText primary="Dashboard" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/control">
+                        <ListItemIcon>
+                            <SportsEsportsIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Control" />
                     </ListItemButton>
                     <ListItemButton component={NavLink} to="/faq">
                         <ListItemIcon>

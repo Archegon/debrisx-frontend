@@ -18,7 +18,7 @@ const Card = ({ title, description, children }) => {
             }}>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
                 <Stack direction="column">
-                    <Typography variant="h4">{title}</Typography>
+                    <Typography variant="h4" color={colors.accent[500]}>{title}</Typography>
                     <Typography variant="subtitle1">{description}</Typography>
                 </Stack>
             </Stack>

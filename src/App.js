@@ -6,6 +6,7 @@ import Dashboard from './scenes/dashboard';
 import FAQ from './scenes/faq';
 import Settings from "./scenes/settings";
 import Sidebar from './scenes/global/Sidebar';
+import Control from "./scenes/control";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -22,6 +23,7 @@ function App() {
               <Box px={3}>
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
+                  <Route path="/control" element={<Control />} />
                   <Route path="/faq" element={<FAQ />} />
                   <Route path="/settings" element={<Settings />} />
                 </Routes>

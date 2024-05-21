@@ -15,7 +15,7 @@ const Topbar = () => {
     const colorMode = useContext(ColorModeContext);
 
     return (
-        <Box position={'sticky'} top={0} display="flex" justifyContent="space-between" p={2} bgcolor={colors.background[950]}>
+        <Box position={'sticky'} top={0} display="flex" justifyContent="space-between" p={2} px={3} bgcolor={colors.background[950]}>
             {/* SEARCH BAR */}
             <Box
                 display="flex"

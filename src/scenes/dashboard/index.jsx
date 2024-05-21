@@ -46,6 +46,7 @@ const Dashboard = () => {
                 className="layout"
                 layout={layout}
                 cols={12}
+                containerPadding={[0, 0]}
                 rowHeight={64}
                 width={width}
                 isDraggable={true}
@@ -71,7 +72,7 @@ const Dashboard = () => {
                             <img
                                 src="https://blog.hubspot.com/hs-fs/hubfs/Google%20Drive%20Integration/types%20of%20charts_32023-May-22-2023-10-17-26-0670-PM.png?width=600&height=451&name=types%20of%20charts_32023-May-22-2023-10-17-26-0670-PM.png"
                                 alt="Performance Chart"
-                                style={{ width: '100%', height: '100%', objectFit: 'contain', opacity: 0.5 }}
+                                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                             />
                         </Box>
                     </Card>
