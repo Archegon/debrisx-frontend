@@ -14,6 +14,7 @@ const Card = ({ title, description, children }) => {
                 px: 2,
                 py: 2,
                 backgroundColor: colors.background[900],
+                position: 'relative', // Ensures the child elements are positioned relative to this container
             }}>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
                 <Stack direction="column">
@@ -21,7 +22,14 @@ const Card = ({ title, description, children }) => {
                     <Typography variant="subtitle1">{description}</Typography>
                 </Stack>
             </Stack>
-            <Box pt={2}>
+            <Box
+                className="no-drag"
+                pt={2}
+                width={"100%"}
+                height={"100%"}
+                maxHeight={"calc(100% - 48px)"}
+                overflow={'auto'}
+            >
                 {children}
             </Box>
         </Box>
