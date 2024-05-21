@@ -13,7 +13,7 @@ const Sidebar = () => {
         <Drawer
             variant="permanent"
             sx={{
-                width: 250,
+                width: 240,
                 flexShrink: 0,
                 '& .MuiDrawer-paper': {
                     width: 250,
