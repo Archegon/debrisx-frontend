@@ -1,10 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { Box, Button, Stack, Typography } from '@mui/material';
 
-// Define API endpoints
-const API_BASE_URL = 'http://192.168.237.96:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const startPredictedFeed = async () => {
     const response = await axios.get(`${API_BASE_URL}/predicted_feed/start`);
@@ -16,7 +15,7 @@ const stopPredictedFeed = async () => {
     return response.data;
 };
 
-const VideoFeed = ({ maxWidth }) => {
+const VideoFeed = ({ maxWidth, videoRef }) => {
     const imgRef = useRef(null);
     const videoContainerRef = useRef(null);
     const [isStreaming, setIsStreaming] = useState(false);
@@ -63,6 +62,13 @@ const VideoFeed = ({ maxWidth }) => {
         }
     };
 
+    useEffect(() => {
+        if (videoRef) {
+            videoRef.current = imgRef.current;
+            videoRef.current.crossOrigin = "anonymous";
+        }
+    }, [videoRef]);
+
     return (
         <Stack spacing={2} direction={'column'} alignItems={'center'} maxWidth={maxWidth}>
             <Box
@@ -101,7 +107,7 @@ const VideoFeed = ({ maxWidth }) => {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        cobjectFit: 'contain',
+                        objectFit: 'contain',
                         zIndex: 1,
                     }}
                 >
