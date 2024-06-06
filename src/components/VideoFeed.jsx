@@ -16,7 +16,7 @@ const stopPredictedFeed = async () => {
     return response.data;
 };
 
-const VideoFeed = () => {
+const VideoFeed = ({ maxWidth }) => {
     const imgRef = useRef(null);
     const videoContainerRef = useRef(null);
     const [isStreaming, setIsStreaming] = useState(false);
@@ -64,7 +64,7 @@ const VideoFeed = () => {
     };
 
     return (
-        <Stack spacing={2} direction={'column'} alignItems={'center'}>
+        <Stack spacing={2} direction={'column'} alignItems={'center'} maxWidth={maxWidth}>
             <Box
                 ref={videoContainerRef}
                 sx={{

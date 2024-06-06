@@ -4,6 +4,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import QuizIcon from '@mui/icons-material/Quiz';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import { tokens } from '../../theme';
 
 const Sidebar = () => {
@@ -51,6 +52,12 @@ const Sidebar = () => {
                             <SportsEsportsIcon />
                         </ListItemIcon>
                         <ListItemText primary="Control" />
+                    </ListItemButton>
+                    <ListItemButton component={NavLink} to="/training">
+                        <ListItemIcon>
+                            <ModelTrainingIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Training" />
                     </ListItemButton>
                     <ListItemButton component={NavLink} to="/faq">
                         <ListItemIcon>
