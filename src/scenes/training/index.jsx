@@ -14,10 +14,31 @@ const Training = () => {
     const captureFrame = async () => {
         const video = videoRef.current;
         const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
 
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        if (!video || !canvas) {
+            console.error('Video or canvas element not found');
+            return;
+        }
+
+        // Set the canvas dimensions
+        canvas.width = video.width;
+        canvas.height = video.height;
+
+        const context = canvas.getContext('2d');
+        if (!context) {
+            console.error('Failed to get canvas context');
+            return;
+        }
+
+        context.drawImage(video, 0, 0, video.width, video.height);
+
+        // Convert canvas to Blob and handle errors
         canvas.toBlob(async (blob) => {
+            if (!blob) {
+                console.error('Failed to create blob from canvas');
+                return;
+            }
+
             const formData = new FormData();
             formData.append('image', blob, 'captured_frame.jpg');
             formData.append('type', imageType);
@@ -66,7 +87,7 @@ const Training = () => {
                     {previewSrc && (
                         <Box mt={2}>
                             <Typography variant="h6">Preview:</Typography>
-                            <img src={previewSrc} alt="Captured Frame" style={{ maxWidth: '100%' }} />
+                            <img src={previewSrc} alt="Captured Frame" style={{ maxWidth: 250 }} />
                         </Box>
                     )}
                 </Stack>
