@@ -21,8 +21,8 @@ const Training = () => {
         }
 
         // Set the canvas dimensions
-        canvas.width = video.width;
-        canvas.height = video.height;
+        canvas.width = 640;
+        canvas.height = 480;
 
         const context = canvas.getContext('2d');
         if (!context) {
@@ -30,7 +30,7 @@ const Training = () => {
             return;
         }
 
-        context.drawImage(video, 0, 0, video.width, video.height);
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
         // Convert canvas to Blob and handle errors
         canvas.toBlob(async (blob) => {
@@ -64,7 +64,7 @@ const Training = () => {
         <Box>
             <Header title="Training" subtitle="Improve object detection model" />
             <Stack direction={'row'} spacing={3}>
-                <VideoFeed maxWidth={450} videoRef={videoRef} />
+                <VideoFeed maxWidth={450} videoRef={videoRef} raw_feed={true} />
                 <Stack direction={'column'} spacing={2}>
                     <Box>
                         <Typography variant="h3">Prepare training data</Typography>

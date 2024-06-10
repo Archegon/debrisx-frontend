@@ -5,8 +5,24 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-const startPredictedFeed = async () => {
-    const response = await axios.get(`${API_BASE_URL}/predicted_feed/start`);
+const PREDICTED_FEED_URL = `${API_BASE_URL}/predicted_feed`;
+const PREDICTED_FEED_START_URL = `${API_BASE_URL}/predicted_feed/start`;
+
+const RAW_FEED_URL = `${API_BASE_URL}/raw_feed`;
+const RAW_FEED_START_URL = `${API_BASE_URL}/raw_feed/start`;
+
+const startPredictedFeed = async ({ raw_feed }) => {
+    let url = '';
+
+    if (raw_feed) {
+        console.log("Starting raw feed");
+        url = RAW_FEED_START_URL;
+    } else {
+        console.log("Starting predicted feed");
+        url = PREDICTED_FEED_START_URL;
+    }
+
+    const response = await axios.get(url);
     return response.data;
 };
 
@@ -15,7 +31,7 @@ const stopPredictedFeed = async () => {
     return response.data;
 };
 
-const VideoFeed = ({ maxWidth, videoRef }) => {
+const VideoFeed = ({ maxWidth, videoRef, raw_feed }) => {
     const imgRef = useRef(null);
     const videoContainerRef = useRef(null);
     const [isStreaming, setIsStreaming] = useState(false);
@@ -24,7 +40,11 @@ const VideoFeed = ({ maxWidth, videoRef }) => {
         mutationFn: startPredictedFeed,
         onSuccess: () => {
             if (imgRef.current) {
-                imgRef.current.src = `${API_BASE_URL}/predicted_feed`;
+                if (raw_feed) {
+                    imgRef.current.src = RAW_FEED_URL;
+                } else {
+                    imgRef.current.src = PREDICTED_FEED_URL;
+                };
                 setIsStreaming(true);
             }
         },
@@ -41,7 +61,7 @@ const VideoFeed = ({ maxWidth, videoRef }) => {
     });
 
     const handleStart = () => {
-        startMutation.mutate();
+        startMutation.mutate({ raw_feed });
     };
 
     const handleStop = () => {

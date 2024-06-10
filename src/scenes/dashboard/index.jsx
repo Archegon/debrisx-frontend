@@ -48,7 +48,7 @@ const Dashboard = () => {
                 <div key="camera">
                     <Card title="Camera" description="View your camera feed">
                         <Box>
-                            <VideoFeed />
+                            <VideoFeed raw_feed={false} />
                         </Box>
                     </Card>
                 </div>
