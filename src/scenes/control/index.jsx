@@ -1,4 +1,4 @@
-import { Box, Button, Typography, Stack, Slider } from "@mui/material";
+import { Box, Button, Typography, Stack, Slider, Chip } from "@mui/material";
 import { useEffect, useState, useCallback } from "react";
 import Header from "../../components/Header";
 import VideoFeed from "../../components/VideoFeed";
@@ -11,9 +11,16 @@ const Control = () => {
     const [servoAngle, setServoAngle] = useState(90);
     const [lastServoCommandTime, setLastServoCommandTime] = useState(0);
     const [sliderDisabled, setSliderDisabled] = useState(false);
+    const [sensorData, setSensorData] = useState({
+        distance_1: null,
+        distance_2: null,
+        tds: null,
+        turbidity: null,
+    });
 
     useEffect(() => {
         const websocket = new WebSocket(`ws://${WS_URL}/ws?client=frontend`);
+        setWs(websocket);
 
         websocket.onopen = () => {
             console.log("WebSocket is open now.");
@@ -25,15 +32,32 @@ const Control = () => {
             setConnectionStatus("Disconnected");
         };
 
-        websocket.onmessage = (event) => {
-            console.log("Received from server: " + event.data);
+        websocket.onerror = (error) => {
+            console.log("WebSocket error: ", error);
+            setConnectionStatus("Disconnected");
         };
 
-        setWs(websocket);
+        websocket.onmessage = (event) => {
+            console.log("Received from server: " + event.data);
+            if (event.data.startsWith("SENSOR_DATA:")) {
+                const data = JSON.parse(event.data.replace("SENSOR_DATA:", ""));
+                setSensorData(data);
+            }
+        };
+
+        // Monitor connection status more frequently
+        const monitorConnection = setInterval(() => {
+            if (websocket.readyState === WebSocket.OPEN) {
+                setConnectionStatus("Connected");
+            } else {
+                setConnectionStatus("Disconnected");
+            }
+        }, 1000); // Check every second
 
         return () => {
             websocket.close();
             setConnectionStatus("Disconnected");
+            clearInterval(monitorConnection);
         };
     }, []);
 
@@ -103,6 +127,27 @@ const Control = () => {
                             disabled={sliderDisabled}
                         />
                     </Box>
+                    <Stack mt={4} width={200} gap={1}>
+                        <Typography variant="h6" align="center" gutterBottom>
+                            Sensor Data
+                        </Typography>
+                        <Chip
+                            label={`Distance 1: ${sensorData.distance_1 !== null ? `${sensorData.distance_1.toFixed(2)} cm` : 'N/A'}`}
+                            variant="outlined"
+                        />
+                        <Chip
+                            label={`Distance 2: ${sensorData.distance_2 !== null ? `${sensorData.distance_2.toFixed(2)} cm` : 'N/A'}`}
+                            variant="outlined"
+                        />
+                        <Chip
+                            label={`TDS: ${sensorData.tds !== null ? `${sensorData.tds.toFixed(2)} ppm` : 'N/A'}`}
+                            variant="outlined"
+                        />
+                        <Chip
+                            label={`Turbidity: ${sensorData.turbidity !== null ? `${sensorData.turbidity.toFixed(2)} NTU` : 'N/A'}`}
+                            variant="outlined"
+                        />
+                    </Stack>
                 </Box>
             </Stack>
         </Box>
