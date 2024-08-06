@@ -3,7 +3,7 @@ import { Box, Button, Stack, Typography, RadioGroup, FormControl, FormControlLab
 import Header from "../../components/Header";
 import VideoFeed from "../../components/VideoFeed";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = process.env.REACT_APP_BACKEND_IP;
 
 const Training = () => {
     const [imageType, setImageType] = useState('train');
@@ -44,7 +44,7 @@ const Training = () => {
             formData.append('type', imageType);
 
             try {
-                const response = await fetch(`${API_BASE_URL}/upload`, {
+                const response = await fetch(`${API_BASE_URL}/api/upload`, {
                     method: 'POST',
                     body: formData,
                 });
