@@ -9,7 +9,7 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import DangerousIcon from '@mui/icons-material/Dangerous';
 
-const WS_URL = process.env.REACT_APP_WS_URL;
+const WS_URL = process.env.REACT_APP_BACKEND_IP;
 
 const Control = () => {
     const [ws, setWs] = useState(null);
