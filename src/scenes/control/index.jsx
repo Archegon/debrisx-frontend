@@ -111,8 +111,11 @@ const Control = () => {
                 </Box>
                 <Stack direction={'column'}>
                     <Stack direction={'column'} justifyContent={'center'} gap={2}>
-                        <Typography variant="h6" align="center" gutterBottom>
+                        <Typography variant="h6" align="center">
                             WebSocket Status: {connectionStatus}
+                        </Typography>
+                        <Typography variant="h6" align="center" gutterBottom>
+                            {WS_URL}
                         </Typography>
                         <Box display="flex" flexDirection="column" alignItems="center" mt={2}>
                             <IconButton size="large" color="primary" onClick={() => sendCommand("FORWARD")} style={{ marginBottom: '8px' }}>
@@ -156,11 +159,11 @@ const Control = () => {
                                     Sensor Data
                                 </Typography>
                                 <Chip
-                                    label={`Distance 1: ${sensorData.distance_1 !== null ? `${sensorData.distance_1.toFixed(2)} cm` : 'N/A'}`}
+                                    label={`Distance Right: ${sensorData.distance_1 !== null ? `${sensorData.distance_1.toFixed(2)} cm` : 'N/A'}`}
                                     variant="outlined"
                                 />
                                 <Chip
-                                    label={`Distance 2: ${sensorData.distance_2 !== null ? `${sensorData.distance_2.toFixed(2)} cm` : 'N/A'}`}
+                                    label={`Distance Left: ${sensorData.distance_2 !== null ? `${sensorData.distance_2.toFixed(2)} cm` : 'N/A'}`}
                                     variant="outlined"
                                 />
                                 <Chip

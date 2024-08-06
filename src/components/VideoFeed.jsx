@@ -5,11 +5,11 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 
 const API_BASE_URL = process.env.REACT_APP_BACKEND_IP;
 
-const PREDICTED_FEED_URL = `${API_BASE_URL}/api/predicted_feed`;
-const PREDICTED_FEED_START_URL = `${API_BASE_URL}/api/predicted_feed/start`;
+const PREDICTED_FEED_URL = `http://${API_BASE_URL}/api/predicted_feed`;
+const PREDICTED_FEED_START_URL = `http://${API_BASE_URL}/api/predicted_feed/start`;
 
-const RAW_FEED_URL = `${API_BASE_URL}/api/raw_feed`;
-const RAW_FEED_START_URL = `${API_BASE_URL}/api/raw_feed/start`;
+const RAW_FEED_URL = `http://${API_BASE_URL}/api/raw_feed`;
+const RAW_FEED_START_URL = `http://${API_BASE_URL}/api/raw_feed/start`;
 
 const startPredictedFeed = async ({ raw_feed }) => {
     let url = '';
@@ -27,7 +27,7 @@ const startPredictedFeed = async ({ raw_feed }) => {
 };
 
 const stopPredictedFeed = async () => {
-    const response = await axios.get(`${API_BASE_URL}/api/predicted_feed/stop`);
+    const response = await axios.get(`http://${API_BASE_URL}/api/predicted_feed/stop`);
     return response.data;
 };
 

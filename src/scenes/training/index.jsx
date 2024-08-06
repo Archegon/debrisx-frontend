@@ -44,7 +44,7 @@ const Training = () => {
             formData.append('type', imageType);
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/upload`, {
+                const response = await fetch(`http://${API_BASE_URL}/api/upload`, {
                     method: 'POST',
                     body: formData,
                 });
